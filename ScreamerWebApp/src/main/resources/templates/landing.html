@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Screamer - Project Overview</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #212529;
+                color: white;
+                font-family: Arial, sans-serif;
+            }
+            .hero {
+                background: url('https://via.placeholder.com/1200x400/000000/FFFFFF/?text=Horror+Movies') no-repeat center center;
+                background-size: cover;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 3rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+            .feature-card {
+                background-color: #343a40;
+                border: none;
+                border-radius: 10px;
+            }
+            .feature-card:hover {
+                background-color: #495057;
+                transition: background-color 0.3s ease;
+            }
+            footer {
+                margin-top: 30px;
+            }
+        </style>
+
+        <script type="text/javascript">
+            function removeAdminButton() {
+
+                var x = document.getElementById("adminButton");
+
+
+                var isAdmin = "[[${isCustomerAdmin}]]";
+                console.log(isAdmin);
+                if (isAdmin != "true")
+                {
+                    console.log("is not admin");
+                    x.style.display = "none";
+                }
+
+            }
+            window.onload = removeAdminButton;
+        </script>
+
+    </head>
+    <body>
+
+
+        <div class="container mt-5">
+            <h2 class="text-center">Welcome to Screamer!</h2>
+            <p class="text-center">Your ultimate horror movie streaming service.</p>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Browse Movies</h5>
+                            <p class="card-text">Explore a vast collection of horror movies and discover your next favorite.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Watchlist</h5>
+                            <p class="card-text">Easily add or remove movies from your personalized watchlist.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Watch Trailers</h5>
+                            <p class="card-text">Preview movies with trailers and detailed descriptions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="container mt-5 p-5">
+                <h2 class="text-center">Meet Your Screamer Developer!</h2>
+
+
+                    <div class="col-md-5 mb-5">
+                        <div class="card feature-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Roshan Phakami Punmagar</h5>
+                                <p class="card-text">Student Id: 12201590 </p>
+                                <p class="card-text">Screamer developer</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a th:href="@{/view/all}" class="btn btn-danger btn-lg mt-4">View All Movies</a>
+
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/admin/movie/view/all}" class="btn btn-primary btn-lg mt-4" id="adminButton">Admin Panel</a>
+                    </div>
+
+                    <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <footer class="text-center mt-5">
+                <p>&copy; 2024 Screamer. All rights reserved.</p>
+            </footer>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

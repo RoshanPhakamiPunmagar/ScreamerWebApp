@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Unblocked Movies</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="my-4">Unblocked Movies</h1>
+
+            <!-- Check if there are any unblocked movies -->
+            <div th:if="${movies.isEmpty()}">
+                <p>No movies are currently unblocked.</p>
+            </div>
+
+            <!-- If there are unblocked movies, display them in a table -->
+            <div th:if="${!movies.isEmpty()}">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Sub-Genre</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterate over the list of unblocked movies and display their details -->
+                        <tr th:each="movie : ${movies}">
+                            <td th:text="${movie.title}"></td>
+                            <td th:text="${movie.description}"></td>
+                            <td th:text="${movie.subGenre}"></td>
+                            <td><a th:href="${movie.url}" target="_blank">Watch</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Button to go back to the full movie list -->
+            <a class="btn btn-primary mt-4" href="/movies">Back to Movie List</a>
+        </div>
+    </body>
+</html>

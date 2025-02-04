@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            nav {
+                margin-bottom: 20px;
+                color: #f0f0f0;
+                background-color: #000;
+            }
+
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav ul li a {
+                text-decoration: none;
+                color: #b2f;
+                padding: 10px 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            nav ul li a:hover {
+                background-color: #000;
+                color: #212529ff;
+            }
+        </style>
+        <meta charset="UTF-8">
+        <title>Customer List</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container mt-4">
+            <nav>
+                <ul>
+                    <li><a th:href="@{/admin/customer/view/all}">Customer</a></li>
+                    <li><a th:href="@{/admin/movie/view/all}">Movies</a></li>
+                    <li>
+                        <form action="#" th:action="@{/logout}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            <h1 class="mb-4">Customers</h1>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Blocked</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="customer : ${customers}">
+                        <td th:text="${customer.id}">ID</td>
+                        <td th:text="${customer.name}">Name</td>
+                        <td th:text="${customer.email}">Email</td>
+                        <td th:text="${customer.blocked ? 'Yes' : 'No'}">Blocked</td>
+                        <td>
+                            <!-- Block Customer Form -->
+                            <form action="#" th:action="@{/admin/customer/view/block/{id}(id=${customer.id})}" method="post" th:if="${!customer.blocked}">
+                                <button type="submit" class="btn btn-warning">Block</button>
+                            </form>
+
+                            <!-- Unblock Customer Form -->
+                            <form action="#" th:action="@{/admin/customer/view/unblock/{id}(id=${customer.id})}" method="post" th:if="${customer.blocked}">
+                                <button type="submit" class="btn btn-success">Unblock</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

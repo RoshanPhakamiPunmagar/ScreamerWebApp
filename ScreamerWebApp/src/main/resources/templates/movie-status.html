@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie Status</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <h1>Movie Status</h1>
+
+        <div>
+            <p th:text="'The movie is ' + (${isBlocked} ? 'blocked' : 'not blocked')"></p>
+        </div>
+
+        <div>
+            <a href="/movies">Back to Movie List</a>
+        </div>
+    </body>
+</html>

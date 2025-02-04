@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Assignment2Spring" />
+        <module name="Screamer" />
+        <module name="Server" />
+        <module name="DatabaseDao" />
+        <module name="ScreamerWebApp" />
+        <module name="Admin" />
+        <module name="Recommendation" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Admin" options="-parameters" />
+      <module name="Assignment2Spring" options="-parameters" />
+      <module name="DatabaseDao" options="-parameters" />
+      <module name="Recommendation" options="-parameters" />
+      <module name="Screamer" options="-parameters" />
+      <module name="ScreamerWebApp" options="-parameters" />
+      <module name="Server" options="-parameters" />
+    </option>
+  </component>
+</project>

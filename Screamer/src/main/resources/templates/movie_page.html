@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #000  ;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+        .movie {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #000;
+            border: 1px solid #112;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .column {
+            flex: 1;
+        }
+        .column h2 {
+            font-size: 24px;
+            color: #ffffde;
+        }
+        .column h3 {
+            font-size: 18px;
+            color: #ffffde;
+        }
+        iframe {
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #bff;
+            background-color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<h1>Movie Data</h1>
+<div id="movie-container">
+    <!-- Thymeleaf will loop through the movies list and render each movie -->
+    <div th:each="movie : ${movies}" class="movie">
+        <div class="row">
+            <div class="column">
+                <h2 th:text="${movie.title}">Movie Title</h2>
+                <h3 th:text="${movie.description}">Movie Description</h3>
+
+
+                <form th:action="@{/view/add/watchlist/{movieId}(movieId=${movie.id})}" method="post">
+                    <!-- Dynamically change button text and value based on movie's watch list status -->
+                    <button type="submit" name="action"
+                            th:text="${movie.isWatchList ? 'Remove from Watch List' : 'Add to Watch List'}"
+                            th:value="${movie.isWatchList ? 'Remove' : 'Add'}"></button>
+                </form>
+
+            </div>
+            <div class="column">
+                <iframe width="560" height="315" th:src="${movie.url}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+    </div>
+    </div>
+    <form th:action="@{/view/watchlist/all}" method="get">
+    <button type="submit">Go to Watchlist</button>
+</form>
+
+</div>
+<script>
+
+</script>
+</body>
+</html>
